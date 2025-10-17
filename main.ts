@@ -117,11 +117,29 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`переход`, function (sprite, location) {
+    if (room == 1) {
+        room = 3
+        tiles.setCurrentTilemap(tilemap`уровень0`)
+        enemy_cubird = 1
+        mySprite2 = sprites.create(assets.image`dawdaw`, SpriteKind.Enemy)
+        tiles.placeOnRandomTile(mySprite, assets.tile`transparency16`)
+        mini_arena = 1
+    }
     if (room == 2) {
         tiles.setCurrentTilemap(tilemap`1 комната`)
         mySprite.x = 32
         room = 1
         sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+    }
+})
+sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
+    if (room == 3) {
+        if (mini_arena == 1) {
+            mySprite2 = sprites.create(assets.image`dawdaw`, SpriteKind.Enemy)
+            tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
+            mySprite2 = sprites.create(assets.image`dawdaw`, SpriteKind.Enemy)
+            tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
+        }
     }
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -481,6 +499,8 @@ let povorot = 0
 let room = 0
 let enemy_cubird = 0
 let tnt = 0
+let mini_arena = 0
+mini_arena = 0
 tnt = 0
 enemy_cubird = 0
 info.setLife(10)
@@ -694,6 +714,7 @@ game.onUpdateInterval(1000, function () {
 game.onUpdateInterval(100, function () {
     mySprite.y += 2
     if (enemy_cubird == 1) {
+        mySprite2.y += 3
         if (mySprite2.tileKindAt(TileDirection.Left, assets.tile`transparency16`)) {
         	
         } else {
@@ -755,6 +776,5 @@ game.onUpdateInterval(100, function () {
         } else {
             mySprite2.x += -3
         }
-        mySprite2.y += 3
     }
 })
