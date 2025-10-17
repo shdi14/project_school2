@@ -749,7 +749,7 @@ game.onUpdateInterval(1000, function () {
 })
 game.onUpdateInterval(100, function () {
     if (enemy_cubird == 1) {
-        if (mySprite2.tileKindAt(TileDirection.Left, assets.tile`transparency16`) || (mySprite2.tileKindAt(TileDirection.Left, assets.tile`myTile0`) || mySprite2.tileKindAt(TileDirection.Left, assets.tile`шип`))) {
+        if (mySprite2.isHittingTile(CollisionDirection.Left) == true) {
             povorot_cubird = 1
             animation.runImageAnimation(
             mySprite2,
@@ -775,7 +775,7 @@ game.onUpdateInterval(100, function () {
             false
             )
         }
-        if (mySprite2.tileKindAt(TileDirection.Right, assets.tile`transparency16`) || (mySprite2.tileKindAt(TileDirection.Right, assets.tile`myTile0`) || mySprite2.tileKindAt(TileDirection.Right, assets.tile`шип`))) {
+        if (mySprite2.isHittingTile(CollisionDirection.Right) == true) {
             povorot_cubird = 0
             animation.runImageAnimation(
             mySprite2,
@@ -806,11 +806,10 @@ game.onUpdateInterval(100, function () {
         } else {
             mySprite2.x += -3
         }
-        mySprite2.y += 5
+        mySprite2.y += 3
     }
     if (enemy_cubird_2 == 1) {
-        mySprite3.y += 3
-        if ((mySprite2.tileKindAt(TileDirection.Left, assets.tile`transparency16`) || (mySprite2.tileKindAt(TileDirection.Left, assets.tile`myTile0`) || mySprite2.tileKindAt(TileDirection.Left, assets.tile`шип`))) == false) {
+        if (mySprite3.isHittingTile(CollisionDirection.Left) == true) {
             povorot_cubird_2 = 1
             animation.runImageAnimation(
             mySprite3,
@@ -836,7 +835,7 @@ game.onUpdateInterval(100, function () {
             false
             )
         }
-        if ((mySprite3.tileKindAt(TileDirection.Right, assets.tile`transparency16`) || (mySprite3.tileKindAt(TileDirection.Right, assets.tile`myTile0`) || mySprite3.tileKindAt(TileDirection.Right, assets.tile`шип`))) == false) {
+        if (mySprite3.isHittingTile(CollisionDirection.Right) == true) {
             povorot_cubird_2 = 0
             animation.runImageAnimation(
             mySprite3,
@@ -867,6 +866,7 @@ game.onUpdateInterval(100, function () {
         } else {
             mySprite3.x += -3
         }
+        mySprite3.y += 3
     }
     mySprite.y += 2
 })
