@@ -41,6 +41,9 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
 scene.onOverlapTile(SpriteKind.Player, assets.tile`debag_block`, function (sprite, location) {
     mySprite.y = SpriteKind.Player + 1
 })
+scene.onOverlapTile(SpriteKind.Projectile, assets.tile`куб`, function (sprite, location) {
+    sprites.destroy(projectile, effects.fountain, 0)
+})
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     mySprite,
@@ -114,12 +117,12 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`переход`, function (sprite, location) {
-    if (room == 1) {
-        tiles.setCurrentTilemap(tilemap`уровень3`)
+    if (room == 2) {
+        tiles.setCurrentTilemap(tilemap`1 комната`)
+        mySprite.x = 32
+        room = 1
+        sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
     }
-})
-scene.onOverlapTile(SpriteKind.Player, assets.tile`куб`, function (sprite, location) {
-    sprites.destroy(projectile, effects.fire, 500)
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     if (acceleration_fly == 1) {
@@ -480,14 +483,14 @@ let enemy_cubird = 0
 let tnt = 0
 tnt = 0
 enemy_cubird = 0
-info.setLife(5)
+info.setLife(10)
 room = 1
 povorot = 1
 tiles.setCurrentTilemap(tilemap`1 комната`)
 mySprite = sprites.create(assets.image`главный герой`, SpriteKind.Player)
 mySprite.x = 64
 mySprite.y = 64
-controller.moveSprite(mySprite, 70, 3)
+controller.moveSprite(mySprite, 100, 100)
 acceleration_fly = 0
 scene.cameraFollowSprite(mySprite)
 scene.setBackgroundImage(img`
@@ -612,7 +615,7 @@ scene.setBackgroundImage(img`
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
     `)
-engine_power = 45
+engine_power = 100
 game.onUpdateInterval(1300, function () {
     if (acceleration_fly == 1) {
         acceleration_fly = 0
