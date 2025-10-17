@@ -1,11 +1,64 @@
-scene.onOverlapTile(SpriteKind.Player, assets.tile`куб`, function (sprite, location) {
-    mySprite.x = SpriteKind.Player + 1
+controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
+    animation.runImageAnimation(
+    mySprite,
+    [img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . d . . d . 
+        . . . . . . . . . . . f d d f . 
+        . . . . . . . . . . . d d d d . 
+        . 7 7 8 8 8 8 8 8 8 7 f d d f . 
+        7 7 7 7 7 7 7 7 7 7 7 d f f d . 
+        . 7 7 7 7 7 7 7 7 7 7 d d d d . 
+        . 7 7 7 7 7 7 7 7 7 7 . . . . . 
+        . 7 7 7 7 7 7 7 7 7 7 . . . . . 
+        . . f . f . . . f . f . . . . . 
+        . . f . f . . . f . f . . . . . 
+        . . f . f . . . f . f . . . . . 
+        . . f . f . . . f . f . . . . . 
+        `],
+    500,
+    false
+    )
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`debag_block`, function (sprite, location) {
+    mySprite.y = SpriteKind.Player + 1
+})
+controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+    animation.runImageAnimation(
+    mySprite,
+    [img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . d . . d . . . . . . . . . . . 
+        . f d d f . . . . . . . . . . . 
+        . d d d d . . . . . . . . . . . 
+        . f d d f 7 8 8 8 8 8 8 8 7 7 . 
+        . d f f d 7 7 7 7 7 7 7 7 7 7 7 
+        . d d d d 7 7 7 7 7 7 7 7 7 7 . 
+        . . . . . 7 7 7 7 7 7 7 7 7 7 . 
+        . . . . . 7 7 7 7 7 7 7 7 7 7 . 
+        . . . . . f . f . . . f . f . . 
+        . . . . . f . f . . . f . f . . 
+        . . . . . f . f . . . f . f . . 
+        . . . . . f . f . . . f . f . . 
+        `],
+    500,
+    false
+    )
+})
+controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
+	
 })
 let mySprite: Sprite = null
 tiles.setCurrentTilemap(tilemap`1 комната`)
 mySprite = sprites.create(assets.image`главный герой`, SpriteKind.Player)
-mySprite.x = 128
-mySprite.y = 32
+mySprite.x = 16
+mySprite.y = 16
 controller.moveSprite(mySprite, 100, 100)
 scene.cameraFollowSprite(mySprite)
 scene.setBackgroundImage(img`
@@ -130,6 +183,6 @@ scene.setBackgroundImage(img`
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
     `)
-game.onUpdateInterval(5000, function () {
-	
+game.onUpdateInterval(100, function () {
+    mySprite.y += 4
 })
