@@ -1,3 +1,6 @@
+namespace SpriteKind {
+    export const projectile_enemy = SpriteKind.create()
+}
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, location) {
     if (room == 1) {
         room = 2
@@ -11,6 +14,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, l
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (sprite, otherSprite) {
     sprites.destroy(mySprite2, effects.fire, 500)
+    sprites.destroy(mySprite3, effects.fire, 500)
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -71,58 +75,61 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     povorot = 0
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (controller.up.isPressed() == true) {
-    	
+    if (povorot == 1) {
+        projectile = sprites.createProjectileFromSprite(img`
+            . . . . . . . d . . . . . . . . 
+            . . . . . . d . . . . . . . . . 
+            . . . . . . d . . . . . . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . f f f f f f f f f . . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . . f f f f f f f f f . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, mySprite, 30, 30)
     } else {
-        if (povorot == 1) {
-            projectile = sprites.createProjectileFromSprite(img`
-                . . . . . . . d . . . . . . . . 
-                . . . . . . d . . . . . . . . . 
-                . . . . . . d . . . . . . . . . 
-                . . . . f f f f f f f . . . . . 
-                . . . f f f f f f f f f . . . . 
-                . . f f f f f f f f f f f . . . 
-                . . f f f f f f f f f f f . . . 
-                . . f f f f f f f f f f f . . . 
-                . . f f f f f f f f f f f . . . 
-                . . f f f f f f f f f f f . . . 
-                . . f f f f f f f f f f f . . . 
-                . . f f f f f f f f f f f . . . 
-                . . . f f f f f f f f f . . . . 
-                . . . . f f f f f f f . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                `, mySprite, 30, 30)
-        } else {
-            projectile = sprites.createProjectileFromSprite(img`
-                . . . . . . . d . . . . . . . . 
-                . . . . . . d . . . . . . . . . 
-                . . . . . . d . . . . . . . . . 
-                . . . . f f f f f f f . . . . . 
-                . . . f f f f f f f f f . . . . 
-                . . f f f f f f f f f f f . . . 
-                . . f f f f f f f f f f f . . . 
-                . . f f f f f f f f f f f . . . 
-                . . f f f f f f f f f f f . . . 
-                . . f f f f f f f f f f f . . . 
-                . . f f f f f f f f f f f . . . 
-                . . f f f f f f f f f f f . . . 
-                . . . f f f f f f f f f . . . . 
-                . . . . f f f f f f f . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                `, mySprite, -30, 30)
-        }
-        tnt = 1
+        projectile = sprites.createProjectileFromSprite(img`
+            . . . . . . . d . . . . . . . . 
+            . . . . . . d . . . . . . . . . 
+            . . . . . . d . . . . . . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . f f f f f f f f f . . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . . f f f f f f f f f . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, mySprite, -30, 30)
     }
+    tnt = 1
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`переход`, function (sprite, location) {
     if (room == 1) {
         room = 3
         tiles.setCurrentTilemap(tilemap`уровень0`)
-        enemy_cubird = 1
         mySprite2 = sprites.create(assets.image`dawdaw`, SpriteKind.Enemy)
         tiles.placeOnRandomTile(mySprite, assets.tile`transparency16`)
+        if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`куб`)) {
+            enemy_cubird = 1
+        } else {
+            while (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`куб`) == false) {
+                tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
+            }
+            enemy_cubird = 1
+        }
         mini_arena = 1
     }
     if (room == 2) {
@@ -137,8 +144,26 @@ sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
         if (mini_arena == 1) {
             mySprite2 = sprites.create(assets.image`dawdaw`, SpriteKind.Enemy)
             tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
-            mySprite2 = sprites.create(assets.image`dawdaw`, SpriteKind.Enemy)
-            tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
+            if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`куб`)) {
+                enemy_cubird = 1
+            } else {
+                while (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`куб`) == false) {
+                    tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
+                }
+                enemy_cubird = 1
+            }
+            mySprite3 = sprites.create(assets.image`dawdaw`, SpriteKind.Enemy)
+            tiles.placeOnRandomTile(mySprite3, assets.tile`transparency16`)
+            if (mySprite3.tileKindAt(TileDirection.Bottom, assets.tile`куб`)) {
+                povorot_cubird_2 = 1
+            } else {
+                while (mySprite3.tileKindAt(TileDirection.Bottom, assets.tile`куб`) == false) {
+                    tiles.placeOnRandomTile(mySprite3, assets.tile`transparency16`)
+                }
+                povorot_cubird_2 = 1
+            }
+            enemy_cubird_2 = 1
+            mini_arena = 2
         }
     }
 })
@@ -489,7 +514,9 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`шип`, function (sprite, lo
     info.changeLifeBy(-1)
     mySprite.y += -12
 })
+let povorot_cubird_2 = 0
 let projectile: Sprite = null
+let mySprite3: Sprite = null
 let povorot_cubird = 0
 let mySprite2: Sprite = null
 let engine_power = 0
@@ -500,6 +527,15 @@ let room = 0
 let enemy_cubird = 0
 let tnt = 0
 let mini_arena = 0
+let enemy_cubird_2 = 0
+story.showPlayerChoices("упасть", "сдохнуть", "стать пупсом")
+if (story.checkLastAnswer("сдохнуть") == true) {
+    game.gameOver(false)
+}
+if (story.checkLastAnswer("стать пупсом") == true) {
+    game.gameOver(true)
+}
+enemy_cubird_2 = 0
 mini_arena = 0
 tnt = 0
 enemy_cubird = 0
@@ -637,7 +673,7 @@ scene.setBackgroundImage(img`
     `)
 engine_power = 100
 game.onUpdateInterval(1300, function () {
-    if (acceleration_fly == 1) {
+    if (controller.up.isPressed() == true) {
         acceleration_fly = 0
         if (povorot == 0) {
             animation.runImageAnimation(
@@ -693,10 +729,10 @@ game.onUpdateInterval(1300, function () {
     }
 })
 game.onUpdateInterval(2000, function () {
-    if (controller.right.isPressed() == false) {
+    if (controller.right.isPressed() == true) {
         acceleration_fly = 1
     } else {
-        if (controller.left.isPressed() == false) {
+        if (controller.left.isPressed() == true) {
             acceleration_fly = 1
         } else {
             acceleration_fly = 0
@@ -712,12 +748,8 @@ game.onUpdateInterval(1000, function () {
     }
 })
 game.onUpdateInterval(100, function () {
-    mySprite.y += 2
     if (enemy_cubird == 1) {
-        mySprite2.y += 3
-        if (mySprite2.tileKindAt(TileDirection.Left, assets.tile`transparency16`)) {
-        	
-        } else {
+        if (mySprite2.tileKindAt(TileDirection.Left, assets.tile`transparency16`) || (mySprite2.tileKindAt(TileDirection.Left, assets.tile`myTile0`) || mySprite2.tileKindAt(TileDirection.Left, assets.tile`шип`))) {
             povorot_cubird = 1
             animation.runImageAnimation(
             mySprite2,
@@ -743,9 +775,7 @@ game.onUpdateInterval(100, function () {
             false
             )
         }
-        if (mySprite2.tileKindAt(TileDirection.Right, assets.tile`transparency16`)) {
-        	
-        } else {
+        if (mySprite2.tileKindAt(TileDirection.Right, assets.tile`transparency16`) || (mySprite2.tileKindAt(TileDirection.Right, assets.tile`myTile0`) || mySprite2.tileKindAt(TileDirection.Right, assets.tile`шип`))) {
             povorot_cubird = 0
             animation.runImageAnimation(
             mySprite2,
@@ -776,5 +806,67 @@ game.onUpdateInterval(100, function () {
         } else {
             mySprite2.x += -3
         }
+        mySprite2.y += 5
     }
+    if (enemy_cubird_2 == 1) {
+        mySprite3.y += 3
+        if ((mySprite2.tileKindAt(TileDirection.Left, assets.tile`transparency16`) || (mySprite2.tileKindAt(TileDirection.Left, assets.tile`myTile0`) || mySprite2.tileKindAt(TileDirection.Left, assets.tile`шип`))) == false) {
+            povorot_cubird_2 = 1
+            animation.runImageAnimation(
+            mySprite3,
+            [img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . f . f . f . f . f . . . . 
+                . . f d f d f d f d f d f . . . 
+                . . f f f f f f f f f f f . . . 
+                . . f d d d d d d d d d f . . . 
+                . . f d d d d d d 5 5 d f . . . 
+                . . f d d d d d d 5 5 d f f . . 
+                . . f d d d d d d d d d f d f . 
+                . . f d d d d d d d d d f f . . 
+                . . f d d d d d d d d d f . . . 
+                . f f d d d d d d d d d f . . . 
+                f d f d d d d d d d d d f . . . 
+                . f f d d d d d d d d d f . . . 
+                . f f f f f f f f f f f f . . . 
+                . . . . . . . . . . . . . . . . 
+                `],
+            500,
+            false
+            )
+        }
+        if ((mySprite3.tileKindAt(TileDirection.Right, assets.tile`transparency16`) || (mySprite3.tileKindAt(TileDirection.Right, assets.tile`myTile0`) || mySprite3.tileKindAt(TileDirection.Right, assets.tile`шип`))) == false) {
+            povorot_cubird_2 = 0
+            animation.runImageAnimation(
+            mySprite3,
+            [img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . f . f . f . f . f . . . 
+                . . . f d f d f d f d f d f . . 
+                . . . f f f f f f f f f f f . . 
+                . . . f d d d d d d d d d f . . 
+                . . . f d 5 5 d d d d d d f . . 
+                . . f f d 5 5 d d d d d d f . . 
+                . f d f d d d d d d d d d f . . 
+                . . f f d d d d d d d d d f . . 
+                . . . f d d d d d d d d d f . . 
+                . . . f d d d d d d d d d f f . 
+                . . . f d d d d d d d d d f d f 
+                . . . f d d d d d d d d d f f . 
+                . . . f f f f f f f f f f f f . 
+                . . . . . . . . . . . . . . . . 
+                `],
+            500,
+            false
+            )
+        }
+        if (povorot_cubird_2 == 1) {
+            mySprite3.x += 3
+        } else {
+            mySprite3.x += -3
+        }
+    }
+    mySprite.y += 2
 })
