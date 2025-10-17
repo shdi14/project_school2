@@ -68,51 +68,58 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     povorot = 0
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (povorot == 1) {
-        projectile = sprites.createProjectileFromSprite(img`
-            . . . . . . . d . . . . . . . . 
-            . . . . . . d . . . . . . . . . 
-            . . . . . . d . . . . . . . . . 
-            . . . . f f f f f f f . . . . . 
-            . . . f f f f f f f f f . . . . 
-            . . f f f f f f f f f f f . . . 
-            . . f f f f f f f f f f f . . . 
-            . . f f f f f f f f f f f . . . 
-            . . f f f f f f f f f f f . . . 
-            . . f f f f f f f f f f f . . . 
-            . . f f f f f f f f f f f . . . 
-            . . f f f f f f f f f f f . . . 
-            . . . f f f f f f f f f . . . . 
-            . . . . f f f f f f f . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, mySprite, 30, 30)
+    if (controller.up.isPressed() == true) {
+    	
     } else {
-        projectile = sprites.createProjectileFromSprite(img`
-            . . . . . . . d . . . . . . . . 
-            . . . . . . d . . . . . . . . . 
-            . . . . . . d . . . . . . . . . 
-            . . . . f f f f f f f . . . . . 
-            . . . f f f f f f f f f . . . . 
-            . . f f f f f f f f f f f . . . 
-            . . f f f f f f f f f f f . . . 
-            . . f f f f f f f f f f f . . . 
-            . . f f f f f f f f f f f . . . 
-            . . f f f f f f f f f f f . . . 
-            . . f f f f f f f f f f f . . . 
-            . . f f f f f f f f f f f . . . 
-            . . . f f f f f f f f f . . . . 
-            . . . . f f f f f f f . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, mySprite, -30, 30)
+        if (povorot == 1) {
+            projectile = sprites.createProjectileFromSprite(img`
+                . . . . . . . d . . . . . . . . 
+                . . . . . . d . . . . . . . . . 
+                . . . . . . d . . . . . . . . . 
+                . . . . f f f f f f f . . . . . 
+                . . . f f f f f f f f f . . . . 
+                . . f f f f f f f f f f f . . . 
+                . . f f f f f f f f f f f . . . 
+                . . f f f f f f f f f f f . . . 
+                . . f f f f f f f f f f f . . . 
+                . . f f f f f f f f f f f . . . 
+                . . f f f f f f f f f f f . . . 
+                . . f f f f f f f f f f f . . . 
+                . . . f f f f f f f f f . . . . 
+                . . . . f f f f f f f . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                `, mySprite, 30, 30)
+        } else {
+            projectile = sprites.createProjectileFromSprite(img`
+                . . . . . . . d . . . . . . . . 
+                . . . . . . d . . . . . . . . . 
+                . . . . . . d . . . . . . . . . 
+                . . . . f f f f f f f . . . . . 
+                . . . f f f f f f f f f . . . . 
+                . . f f f f f f f f f f f . . . 
+                . . f f f f f f f f f f f . . . 
+                . . f f f f f f f f f f f . . . 
+                . . f f f f f f f f f f f . . . 
+                . . f f f f f f f f f f f . . . 
+                . . f f f f f f f f f f f . . . 
+                . . f f f f f f f f f f f . . . 
+                . . . f f f f f f f f f . . . . 
+                . . . . f f f f f f f . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                `, mySprite, -30, 30)
+        }
+        tnt = 1
     }
-    tnt = 1
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`переход`, function (sprite, location) {
     if (room == 1) {
         tiles.setCurrentTilemap(tilemap`уровень3`)
     }
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`куб`, function (sprite, location) {
+    sprites.destroy(projectile, effects.fire, 500)
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     if (acceleration_fly == 1) {
@@ -678,11 +685,6 @@ game.onUpdateInterval(1000, function () {
         if (mySprite.overlapsWith(mySprite2)) {
             info.changeLifeBy(-1)
             mySprite.y += -12
-        }
-    }
-    if (tnt == 1) {
-        if (mySprite2.overlapsWith(projectile)) {
-            sprites.destroy(mySprite2, effects.fire, 500)
         }
     }
 })
