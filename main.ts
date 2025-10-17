@@ -626,18 +626,68 @@ game.onUpdateInterval(2000, function () {
     }
 })
 game.onUpdateInterval(100, function () {
-    mySprite.y += 3
+    mySprite.y += 2
     if (enemy_cubird == 1) {
         if (mySprite2.tileKindAt(TileDirection.Left, assets.tile`transparency16`)) {
-            povorot_cubird = 0
+        	
+        } else {
+            povorot_cubird = 1
+            animation.runImageAnimation(
+            mySprite2,
+            [img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . f . f . f . f . f . . . . 
+                . . f d f d f d f d f d f . . . 
+                . . f f f f f f f f f f f . . . 
+                . . f d d d d d d d d d f . . . 
+                . . f d d d d d d 5 5 d f . . . 
+                . . f d d d d d d 5 5 d f f . . 
+                . . f d d d d d d d d d f d f . 
+                . . f d d d d d d d d d f f . . 
+                . . f d d d d d d d d d f . . . 
+                . f f d d d d d d d d d f . . . 
+                f d f d d d d d d d d d f . . . 
+                . f f d d d d d d d d d f . . . 
+                . f f f f f f f f f f f f . . . 
+                . . . . . . . . . . . . . . . . 
+                `],
+            500,
+            false
+            )
         }
         if (mySprite2.tileKindAt(TileDirection.Right, assets.tile`transparency16`)) {
         	
+        } else {
+            povorot_cubird = 0
+            animation.runImageAnimation(
+            mySprite2,
+            [img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . f . f . f . f . f . . . 
+                . . . f d f d f d f d f d f . . 
+                . . . f f f f f f f f f f f . . 
+                . . . f d d d d d d d d d f . . 
+                . . . f d 5 5 d d d d d d f . . 
+                . . f f d 5 5 d d d d d d f . . 
+                . f d f d d d d d d d d d f . . 
+                . . f f d d d d d d d d d f . . 
+                . . . f d d d d d d d d d f . . 
+                . . . f d d d d d d d d d f f . 
+                . . . f d d d d d d d d d f d f 
+                . . . f d d d d d d d d d f f . 
+                . . . f f f f f f f f f f f f . 
+                . . . . . . . . . . . . . . . . 
+                `],
+            500,
+            false
+            )
         }
         if (povorot_cubird == 1) {
-            mySprite.x += 3
+            mySprite2.x += 3
         } else {
-            mySprite.x += -3
+            mySprite2.x += -3
         }
         mySprite2.y += 3
     }
