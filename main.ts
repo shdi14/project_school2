@@ -9,6 +9,9 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, l
         povorot_cubird = 1
     }
 })
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (sprite, otherSprite) {
+    sprites.destroy(mySprite2, effects.fire, 500)
+})
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     mySprite,
@@ -63,6 +66,48 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     false
     )
     povorot = 0
+})
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (povorot == 1) {
+        projectile = sprites.createProjectileFromSprite(img`
+            . . . . . . . d . . . . . . . . 
+            . . . . . . d . . . . . . . . . 
+            . . . . . . d . . . . . . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . f f f f f f f f f . . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . . f f f f f f f f f . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, mySprite, 30, 30)
+    } else {
+        projectile = sprites.createProjectileFromSprite(img`
+            . . . . . . . d . . . . . . . . 
+            . . . . . . d . . . . . . . . . 
+            . . . . . . d . . . . . . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . f f f f f f f f f . . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . f f f f f f f f f f f . . . 
+            . . . f f f f f f f f f . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, mySprite, -30, 30)
+    }
+    tnt = 1
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`переход`, function (sprite, location) {
     if (room == 1) {
@@ -416,6 +461,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`шип`, function (sprite, lo
     info.changeLifeBy(-1)
     mySprite.y += -12
 })
+let projectile: Sprite = null
 let povorot_cubird = 0
 let mySprite2: Sprite = null
 let engine_power = 0
@@ -424,6 +470,8 @@ let mySprite: Sprite = null
 let povorot = 0
 let room = 0
 let enemy_cubird = 0
+let tnt = 0
+tnt = 0
 enemy_cubird = 0
 info.setLife(5)
 room = 1
@@ -622,6 +670,19 @@ game.onUpdateInterval(2000, function () {
             acceleration_fly = 1
         } else {
             acceleration_fly = 0
+        }
+    }
+})
+game.onUpdateInterval(1000, function () {
+    if (enemy_cubird == 1) {
+        if (mySprite.overlapsWith(mySprite2)) {
+            info.changeLifeBy(-1)
+            mySprite.y += -12
+        }
+    }
+    if (tnt == 1) {
+        if (mySprite2.overlapsWith(projectile)) {
+            sprites.destroy(mySprite2, effects.fire, 500)
         }
     }
 })
