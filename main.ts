@@ -392,6 +392,7 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
             500,
             false
             )
+            controller.moveSprite(mySprite, 70, 3)
         }
     }
 })
@@ -402,8 +403,8 @@ let povorot = 0
 povorot = 1
 tiles.setCurrentTilemap(tilemap`1 комната`)
 mySprite = sprites.create(assets.image`главный герой`, SpriteKind.Player)
-mySprite.x = 16
-mySprite.y = 16
+mySprite.x = 64
+mySprite.y = 64
 controller.moveSprite(mySprite, 70, 3)
 acceleration_fly = 0
 scene.cameraFollowSprite(mySprite)
@@ -530,23 +531,73 @@ scene.setBackgroundImage(img`
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
     `)
 engine_power = 45
+game.onUpdateInterval(1300, function () {
+    if (acceleration_fly == 1) {
+        acceleration_fly = 0
+        if (povorot == 0) {
+            animation.runImageAnimation(
+            mySprite,
+            [img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . d . . d . . . . . . . . . . . 
+                . f d d f . . . . . . . . . . . 
+                . d d d d . . . . . . . . . . . 
+                . f d d f 7 8 8 8 8 8 8 8 7 7 . 
+                . d f f d 7 7 7 7 7 7 7 7 7 7 7 
+                . d d d d 7 7 7 7 7 7 7 7 7 7 . 
+                . . . . . 7 7 7 7 7 7 7 7 7 7 . 
+                . . . . . 7 7 7 7 7 7 7 7 7 7 . 
+                . . . . . f . f . . . f . f . . 
+                . . . . . f . f . . . f . f . . 
+                . . . . . f . f . . . f . f . . 
+                . . . . . f . f . . . f . f . . 
+                `],
+            500,
+            false
+            )
+            controller.moveSprite(mySprite, 70, 3)
+        } else {
+            animation.runImageAnimation(
+            mySprite,
+            [img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . d . . d . 
+                . . . . . . . . . . . f d d f . 
+                . . . . . . . . . . . d d d d . 
+                . 7 7 8 8 8 8 8 8 8 7 f d d f . 
+                7 7 7 7 7 7 7 7 7 7 7 d f f d . 
+                . 7 7 7 7 7 7 7 7 7 7 d d d d . 
+                . 7 7 7 7 7 7 7 7 7 7 . . . . . 
+                . 7 7 7 7 7 7 7 7 7 7 . . . . . 
+                . . f . f . . . f . f . . . . . 
+                . . f . f . . . f . f . . . . . 
+                . . f . f . . . f . f . . . . . 
+                . . f . f . . . f . f . . . . . 
+                `],
+            500,
+            false
+            )
+            controller.moveSprite(mySprite, 70, 3)
+        }
+    }
+})
 game.onUpdateInterval(2000, function () {
-    acceleration_fly = 0
-})
-game.onUpdateInterval(100, function () {
-    mySprite.y += 3
-})
-game.onUpdateInterval(200, function () {
     if (controller.right.isPressed() == false) {
         acceleration_fly = 1
     } else {
         if (controller.left.isPressed() == false) {
-            if (true) {
-            	
-            }
             acceleration_fly = 1
         } else {
             acceleration_fly = 0
         }
     }
+})
+game.onUpdateInterval(100, function () {
+    mySprite.y += 3
 })
