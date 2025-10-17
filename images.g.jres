@@ -4,6 +4,11 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "главный герой"
     },
+    "image2": {
+        "data": "hwQQABAAAAAAAAAAAAAPAAAAAAAA8P0PAPD//////w8A39/d3d3dDwDw393d3d0PAN/f3d3d3Q8A8N/d3d3dDwDf393d3d0PAPDf3d3d3Q8A399V3d3dDwDw31Xd3d0PAN/f3d3d3Q8A8P//////DwAAAPD9AAAAAAAAAA8AAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "dawdaw"
+    },
     "*": {
         "mimeType": "image/x-mkcd-f4",
         "dataEncoding": "base64",

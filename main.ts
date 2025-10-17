@@ -1,3 +1,14 @@
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, location) {
+    if (room == 1) {
+        room = 2
+        tiles.setCurrentTilemap(tilemap`уровень2`)
+        mySprite.x = 400
+        mySprite2 = sprites.create(assets.image`dawdaw`, SpriteKind.Enemy)
+        mySprite2.setPosition(25, 91)
+        enemy_cubird = 1
+        povorot_cubird = 1
+    }
+})
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     mySprite,
@@ -52,6 +63,11 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     false
     )
     povorot = 0
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`переход`, function (sprite, location) {
+    if (room == 1) {
+        tiles.setCurrentTilemap(tilemap`уровень3`)
+    }
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     if (acceleration_fly == 1) {
@@ -396,10 +412,21 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
         }
     }
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`шип`, function (sprite, location) {
+    info.changeLifeBy(-1)
+    mySprite.y += -12
+})
+let povorot_cubird = 0
+let mySprite2: Sprite = null
 let engine_power = 0
 let acceleration_fly = 0
 let mySprite: Sprite = null
 let povorot = 0
+let room = 0
+let enemy_cubird = 0
+enemy_cubird = 0
+info.setLife(5)
+room = 1
 povorot = 1
 tiles.setCurrentTilemap(tilemap`1 комната`)
 mySprite = sprites.create(assets.image`главный герой`, SpriteKind.Player)
@@ -600,4 +627,18 @@ game.onUpdateInterval(2000, function () {
 })
 game.onUpdateInterval(100, function () {
     mySprite.y += 3
+    if (enemy_cubird == 1) {
+        if (mySprite2.tileKindAt(TileDirection.Left, assets.tile`transparency16`)) {
+            povorot_cubird = 0
+        }
+        if (mySprite2.tileKindAt(TileDirection.Right, assets.tile`transparency16`)) {
+        	
+        }
+        if (povorot_cubird == 1) {
+            mySprite.x += 3
+        } else {
+            mySprite.x += -3
+        }
+        mySprite2.y += 3
+    }
 })
