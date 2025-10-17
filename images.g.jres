@@ -1,0 +1,12 @@
+{
+    "image1": {
+        "data": "hwQQABAAAAAAAAAABwAAAAAAAHB3dwAAAAAAcHd3//8AAACAd3cAAAAAAIB3d///AAAAgHd3AAAAAACAd3cAAAAAAIB3dwAAAAAAgHd3//8AAACAd3cAAAAAAHB3d///AAD9/d0AAAAAANDd3wAAAAAA0N3fAAAAAAD9/d0AAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "главный герой"
+    },
+    "*": {
+        "mimeType": "image/x-mkcd-f4",
+        "dataEncoding": "base64",
+        "namespace": "myImages"
+    }
+}
