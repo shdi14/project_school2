@@ -52,14 +52,19 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     )
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
-	
+    if (acceleration_fly == 1) {
+        controller.moveSprite(mySprite, 90, engine_power)
+    }
 })
+let engine_power = 0
+let acceleration_fly = 0
 let mySprite: Sprite = null
 tiles.setCurrentTilemap(tilemap`1 комната`)
 mySprite = sprites.create(assets.image`главный герой`, SpriteKind.Player)
 mySprite.x = 16
 mySprite.y = 16
-controller.moveSprite(mySprite, 100, 100)
+controller.moveSprite(mySprite, 70, 3)
+acceleration_fly = 0
 scene.cameraFollowSprite(mySprite)
 scene.setBackgroundImage(img`
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999997777777777777777777777777777777779999777777777777777777777777777
@@ -183,6 +188,18 @@ scene.setBackgroundImage(img`
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
     `)
+engine_power = 50
 game.onUpdateInterval(100, function () {
-    mySprite.y += 4
+    mySprite.y += 3
+})
+game.onUpdateInterval(200, function () {
+    if (controller.right.isPressed() == false) {
+        acceleration_fly = 1
+    } else {
+        if (controller.left.isPressed() == false) {
+            acceleration_fly = 1
+        } else {
+            acceleration_fly = 0
+        }
+    }
 })
