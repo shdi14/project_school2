@@ -141,29 +141,11 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`переход`, function (sp
 })
 sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
     if (room == 3) {
-        if (mini_arena == 1) {
-            mySprite2 = sprites.create(assets.image`dawdaw`, SpriteKind.Enemy)
-            tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
-            if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`куб`)) {
-                enemy_cubird = 1
-            } else {
-                while (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`куб`) == false) {
-                    tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
-                }
-                enemy_cubird = 1
-            }
-            mySprite3 = sprites.create(assets.image`dawdaw`, SpriteKind.Enemy)
-            tiles.placeOnRandomTile(mySprite3, assets.tile`transparency16`)
-            if (mySprite3.tileKindAt(TileDirection.Bottom, assets.tile`куб`)) {
-                povorot_cubird_2 = 1
-            } else {
-                while (mySprite3.tileKindAt(TileDirection.Bottom, assets.tile`куб`) == false) {
-                    tiles.placeOnRandomTile(mySprite3, assets.tile`transparency16`)
-                }
-                povorot_cubird_2 = 1
-            }
-            enemy_cubird_2 = 1
-            mini_arena = 2
+        mini_arena += 1
+        info.changeScoreBy(1)
+        if (mini_arena == 5) {
+            speed = 90
+            game.gameOver(true)
         }
     }
 })
@@ -527,7 +509,7 @@ let room = 0
 let enemy_cubird = 0
 let tnt = 0
 let mini_arena = 0
-let enemy_cubird_2 = 0
+let speed = 0
 story.showPlayerChoices("упасть", "сдохнуть", "стать пупсом")
 if (story.checkLastAnswer("сдохнуть") == true) {
     game.gameOver(false)
@@ -535,7 +517,8 @@ if (story.checkLastAnswer("сдохнуть") == true) {
 if (story.checkLastAnswer("стать пупсом") == true) {
     game.gameOver(true)
 }
-enemy_cubird_2 = 0
+let enemy_cubird_2 = 0
+speed = 60
 mini_arena = 0
 tnt = 0
 enemy_cubird = 0
@@ -546,7 +529,7 @@ tiles.setCurrentTilemap(tilemap`1 комната`)
 mySprite = sprites.create(assets.image`главный герой`, SpriteKind.Player)
 mySprite.x = 64
 mySprite.y = 64
-controller.moveSprite(mySprite, 100, 100)
+controller.moveSprite(mySprite, speed, 3)
 acceleration_fly = 0
 scene.cameraFollowSprite(mySprite)
 scene.setBackgroundImage(img`
@@ -869,4 +852,28 @@ game.onUpdateInterval(100, function () {
         mySprite3.y += 3
     }
     mySprite.y += 2
+})
+game.onUpdateInterval(10000, function () {
+    mySprite3 = sprites.create(assets.image`dawdaw`, SpriteKind.Enemy)
+    tiles.placeOnRandomTile(mySprite3, assets.tile`transparency16`)
+    if (mySprite3.tileKindAt(TileDirection.Bottom, assets.tile`куб`)) {
+        povorot_cubird_2 = 1
+    } else {
+        while (mySprite3.tileKindAt(TileDirection.Bottom, assets.tile`куб`) == false) {
+            tiles.placeOnRandomTile(mySprite3, assets.tile`transparency16`)
+        }
+        povorot_cubird_2 = 1
+    }
+    enemy_cubird_2 = 1
+    mini_arena = 0
+    mySprite2 = sprites.create(assets.image`dawdaw`, SpriteKind.Enemy)
+    tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
+    if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`куб`)) {
+        enemy_cubird = 1
+    } else {
+        while (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`куб`) == false) {
+            tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
+        }
+        enemy_cubird = 1
+    }
 })
