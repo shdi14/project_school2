@@ -854,26 +854,28 @@ game.onUpdateInterval(100, function () {
     mySprite.y += 2
 })
 game.onUpdateInterval(10000, function () {
-    mySprite3 = sprites.create(assets.image`dawdaw`, SpriteKind.Enemy)
-    tiles.placeOnRandomTile(mySprite3, assets.tile`transparency16`)
-    if (mySprite3.tileKindAt(TileDirection.Bottom, assets.tile`куб`)) {
-        povorot_cubird_2 = 1
-    } else {
-        while (mySprite3.tileKindAt(TileDirection.Bottom, assets.tile`куб`) == false) {
-            tiles.placeOnRandomTile(mySprite3, assets.tile`transparency16`)
+    if (room == 3) {
+        mySprite3 = sprites.create(assets.image`dawdaw`, SpriteKind.Enemy)
+        tiles.placeOnRandomTile(mySprite3, assets.tile`transparency16`)
+        if (mySprite3.tileKindAt(TileDirection.Bottom, assets.tile`куб`)) {
+            povorot_cubird_2 = 1
+        } else {
+            while (mySprite3.tileKindAt(TileDirection.Bottom, assets.tile`куб`) == false) {
+                tiles.placeOnRandomTile(mySprite3, assets.tile`transparency16`)
+            }
+            povorot_cubird_2 = 1
         }
-        povorot_cubird_2 = 1
-    }
-    enemy_cubird_2 = 1
-    mini_arena = 0
-    mySprite2 = sprites.create(assets.image`dawdaw`, SpriteKind.Enemy)
-    tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
-    if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`куб`)) {
-        enemy_cubird = 1
-    } else {
-        while (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`куб`) == false) {
-            tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
+        enemy_cubird_2 = 1
+        mini_arena = 0
+        mySprite2 = sprites.create(assets.image`dawdaw`, SpriteKind.Enemy)
+        tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
+        if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`куб`)) {
+            enemy_cubird = 1
+        } else {
+            while (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`куб`) == false) {
+                tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
+            }
+            enemy_cubird = 1
         }
-        enemy_cubird = 1
     }
 })
