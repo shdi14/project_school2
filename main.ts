@@ -143,10 +143,6 @@ sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
     if (room == 3) {
         mini_arena += 1
         info.changeScoreBy(1)
-        if (mini_arena == 5) {
-            speed = 90
-            game.gameOver(true)
-        }
     }
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -509,7 +505,6 @@ let room = 0
 let enemy_cubird = 0
 let tnt = 0
 let mini_arena = 0
-let speed = 0
 story.showPlayerChoices("упасть", "сдохнуть", "стать пупсом")
 if (story.checkLastAnswer("сдохнуть") == true) {
     game.gameOver(false)
@@ -518,7 +513,7 @@ if (story.checkLastAnswer("стать пупсом") == true) {
     game.gameOver(true)
 }
 let enemy_cubird_2 = 0
-speed = 60
+let speed = 60
 mini_arena = 0
 tnt = 0
 enemy_cubird = 0
@@ -708,6 +703,12 @@ game.onUpdateInterval(1300, function () {
             false
             )
             controller.moveSprite(mySprite, 70, 3)
+        }
+    }
+    if (room == 3) {
+        if (mini_arena == 5) {
+            speed = 90
+            game.gameOver(true)
         }
     }
 })
