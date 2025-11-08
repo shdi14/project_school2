@@ -202,88 +202,12 @@ f d f d d d d d d d d d f . . .
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `;
-            case "image3":
-            case "myImage":return img`
-. . . 1 1 . . . . . 1 1 . . . . 
-. . . 1 1 . . . . 1 1 . . . . . 
-. . . 1 1 . . . 1 1 1 . . . . . 
-. . . 1 f 1 1 1 f 1 . . . . . . 
-. . . 1 f f 1 f f 1 . . . . . . 
-. . . . 1 1 2 2 2 . . . . . . . 
-. . . . . 2 2 2 2 2 . . . . . . 
-. . . . . 2 2 2 2 2 . . . . . . 
-. . . . 2 2 2 2 2 2 2 . . . . . 
-. . . . 2 2 2 2 2 2 2 . . . . . 
-. . . 2 2 2 2 2 2 2 2 2 . . . . 
-. . 2 2 2 2 2 2 2 2 2 2 2 . . . 
-. . 2 2 2 2 2 2 2 2 2 2 2 . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`;
         }
         return null;
     })
 
     helpers._registerFactory("animation", function(name: string) {
         switch(helpers.stringTrim(name)) {
-            case "сгиш":
-            case "0LXjw(S,vgjn+Jr*:0!K":return [img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . f . f . f . f . f . . . . 
-. . f d f d f d f d f d f . . . 
-. . f f f f f f f f f f f . . . 
-. . f d d d d d d d d d f . . . 
-. . f d d d d d d 5 5 d f . . . 
-. . f d d d d d d 5 5 d f f . . 
-. . f d d d d d d d d d f d f . 
-. . f d d d d d d d d d f f . . 
-. . f d d d d d d d d d f . . . 
-. f f d d d d d d d d d f . . . 
-f d f d d d d d d d d d f . . . 
-. f f d d d d d d d d d f . . . 
-. f f f f f f f f f f f f . . . 
-. . . . . . . . . . . . . . . . 
-`];
-            case "ыавваы":
-            case "e-*QzPqf3MGH;M$rlBu:":return [img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . f . f . f . f . f . . . 
-. . . f d f d f d f d f d f . . 
-. . . f f f f f f f f f f f . . 
-. . . f d d d d d d d d d f . . 
-. . . f d 5 5 d d d d d d f . . 
-. . f f d 5 5 d d d d d d f . . 
-. f d f d d d d d d d d d f . . 
-. . f f d d d d d d d d d f . . 
-. . . f d d d d d d d d d f . . 
-. . . f d d d d d d d d d f f . 
-. . . f d d d d d d d d d f d f 
-. . . f d d d d d d d d d f f . 
-. . . f f f f f f f f f f f f . 
-. . . . . . . . . . . . . . . . 
-`];
-            case "ываыва":
-            case "-%-Ua3`Th_#i":return [img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . f . f . f . f . f . . . . 
-. . f d f d f d f d f d f . . . 
-. . f f f f f f f f f f f . . . 
-. . f d d d d d d d d d f . . . 
-. . f d d d d d d 5 5 d f . . . 
-. . f d d d d d d 5 5 d f f . . 
-. . f d d d d d d d d d f d f . 
-. . f d d d d d d d d d f f . . 
-. . f d d d d d d d d d f . . . 
-. f f d d d d d d d d d f . . . 
-f d f d d d d d d d d d f . . . 
-. f f d d d d d d d d d f . . . 
-. f f f f f f f f f f f f . . . 
-. . . . . . . . . . . . . . . . 
-`];
             case "ваыва":
             case "S]~[A-1F|S;S-*,[lgvK":return [img`
 . . . . . . . . . . . . . . . . 
@@ -674,7 +598,64 @@ f d f d d d d d d d d d f . . .
 . . f . f . . . f . f . . . . . 
 . . f . f . . . f . f . . . . . 
 `];
-            case "ываываы":
+            case "dffgdfg":
+            case "0LXjw(S,vgjn+Jr*:0!K":return [img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . f . f . f . f . f . . . . 
+. . f d f d f d f d f d f . . . 
+. . f f f f f f f f f f f . . . 
+. . f d d d d d d d d d f . . . 
+. . f d d d d d d 5 5 d f . . . 
+. . f d d d d d d 5 5 d f f . . 
+. . f d d d d d d d d d f d f . 
+. . f d d d d d d d d d f f . . 
+. . f d d d d d d d d d f . . . 
+. f f d d d d d d d d d f . . . 
+f d f d d d d d d d d d f . . . 
+. f f d d d d d d d d d f . . . 
+. f f f f f f f f f f f f . . . 
+. . . . . . . . . . . . . . . . 
+`];
+            case "dfgdfg":
+            case "e-*QzPqf3MGH;M$rlBu:":return [img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . f . f . f . f . f . . . 
+. . . f d f d f d f d f d f . . 
+. . . f f f f f f f f f f f . . 
+. . . f d d d d d d d d d f . . 
+. . . f d 5 5 d d d d d d f . . 
+. . f f d 5 5 d d d d d d f . . 
+. f d f d d d d d d d d d f . . 
+. . f f d d d d d d d d d f . . 
+. . . f d d d d d d d d d f . . 
+. . . f d d d d d d d d d f f . 
+. . . f d d d d d d d d d f d f 
+. . . f d d d d d d d d d f f . 
+. . . f f f f f f f f f f f f . 
+. . . . . . . . . . . . . . . . 
+`];
+            case "dfgdfg0":
+            case "-%-Ua3`Th_#i":return [img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . f . f . f . f . f . . . . 
+. . f d f d f d f d f d f . . . 
+. . f f f f f f f f f f f . . . 
+. . f d d d d d d d d d f . . . 
+. . f d d d d d d 5 5 d f . . . 
+. . f d d d d d d 5 5 d f f . . 
+. . f d d d d d d d d d f d f . 
+. . f d d d d d d d d d f f . . 
+. . f d d d d d d d d d f . . . 
+. f f d d d d d d d d d f . . . 
+f d f d d d d d d d d d f . . . 
+. f f d d d d d d d d d f . . . 
+. f f f f f f f f f f f f . . . 
+. . . . . . . . . . . . . . . . 
+`];
+            case "dfgdfgd":
             case "h3mUTNZgbpo_UIuO":return [img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
