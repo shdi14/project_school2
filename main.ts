@@ -51,6 +51,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`переход`, function (sp
         room = 3
         tiles.setCurrentTilemap(tilemap`уровень0`)
         mySprite2 = sprites.create(assets.image`dawdaw`, SpriteKind.cubird_enemy_1)
+        mySprite2.setPosition(64, 59)
     }
     if (room == 2) {
         tiles.setCurrentTilemap(tilemap`1 комната`)
@@ -197,7 +198,7 @@ game.onUpdateInterval(100, function () {
             povorot_cubird = 1
             animation.runImageAnimation(
             mySprite2,
-            assets.animation`dffgdfg`,
+            assets.animation`сгиш`,
             500,
             false
             )
@@ -206,7 +207,7 @@ game.onUpdateInterval(100, function () {
             povorot_cubird = 0
             animation.runImageAnimation(
             mySprite2,
-            assets.animation`dfgdfg`,
+            assets.animation`ыавваы`,
             500,
             false
             )
@@ -223,7 +224,7 @@ game.onUpdateInterval(100, function () {
             povorot_cubird_2 = 1
             animation.runImageAnimation(
             mySprite3,
-            assets.animation`dfgdfg0`,
+            assets.animation`ываыва`,
             500,
             false
             )
@@ -232,7 +233,7 @@ game.onUpdateInterval(100, function () {
             povorot_cubird_2 = 0
             animation.runImageAnimation(
             mySprite3,
-            assets.animation`dfgdfgd`,
+            assets.animation`ываываы`,
             500,
             false
             )
