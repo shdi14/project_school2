@@ -8,7 +8,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, l
         room = 2
         tiles.setCurrentTilemap(tilemap`уровень2`)
         mySprite.x = 400
-        mySprite2 = sprites.create(assets.image`dawdaw`, SpriteKind.Enemy)
+        mySprite2 = sprites.create(assets.image`dawdaw`, SpriteKind.cubird_enemy_1)
         mySprite2.setPosition(25, 91)
         enemy_cubird = 1
         povorot_cubird = 1
