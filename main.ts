@@ -27,7 +27,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`debag_block`, function (sprit
     mySprite.y = SpriteKind.Player + 1
 })
 scene.onOverlapTile(SpriteKind.Projectile, assets.tile`куб`, function (sprite, location) {
-    sprites.destroy(projectile, effects.fountain, 0)
+    sprites.destroy(projectile, effects.fountain, 2000)
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
