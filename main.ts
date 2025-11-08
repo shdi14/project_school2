@@ -46,6 +46,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     }
     tnt = 1
 })
+//переход
 scene.onOverlapTile(SpriteKind.Player, assets.tile`переход`, function (sprite, location) {
     if (room == 1) {
         room = 3
@@ -69,6 +70,7 @@ sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
         }
     }
 })
+//полёт
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     if (acceleration_fly == 1) {
         controller.moveSprite(mySprite, 90, engine_power * 2)
@@ -106,16 +108,19 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
         }
     }
 })
+//Шип
 scene.onOverlapTile(SpriteKind.Player, assets.tile`шип`, function (sprite, location) {
     info.changeLifeBy(-1)
     mySprite.y += -12
 })
+//Победа над кубёрдом
 sprites.onOverlap(SpriteKind.cubird_enemy_1, SpriteKind.Projectile, function (sprite, otherSprite) {
     sprites.destroy(mySprite2, effects.disintegrate, 10)
 })
 sprites.onOverlap(SpriteKind.enemy_cubird_2, SpriteKind.Projectile, function (sprite, otherSprite) {
     sprites.destroy(mySprite3, effects.disintegrate, 10)
 })
+//Переменные
 let povorot_cubird_2 = 0
 let mySprite3: Sprite = null
 let projectile: Sprite = null
@@ -129,6 +134,16 @@ let room = 0
 let enemy_cubird = 0
 let tnt = 0
 let mini_arena = 0
+let enemy_cubird_2 = 0
+let speed = 60
+let mini_arena = 0
+let tnt = 0
+let enemy_cubird = 0
+let room = 1
+let povorot = 1
+let acceleration_fly = 0
+let engine_power = 100
+//Выбор в начале игры
 story.showPlayerChoices("упасть", "сдохнуть", "стать пупсом")
 if (story.checkLastAnswer("сдохнуть") == true) {
     game.gameOver(false)
@@ -136,23 +151,21 @@ if (story.checkLastAnswer("сдохнуть") == true) {
 if (story.checkLastAnswer("стать пупсом") == true) {
     game.gameOver(true)
 }
-let enemy_cubird_2 = 0
-let speed = 60
-mini_arena = 0
-tnt = 0
-enemy_cubird = 0
+//Здоровье
 info.setLife(10)
-room = 1
-povorot = 1
+//Tilemap на старте
 tiles.setCurrentTilemap(tilemap`1 комната`)
+//Спаун главного героя
 mySprite = sprites.create(assets.image`главный герой`, SpriteKind.Player)
 mySprite.x = 64
 mySprite.y = 64
+//Движение главного героя 
 controller.moveSprite(mySprite, speed, 3)
-acceleration_fly = 0
+//Движение главного героя в центре экрана
 scene.cameraFollowSprite(mySprite)
+//Фон
 scene.setBackgroundImage(assets.image`фон гд лока`)
-engine_power = 100
+//Полёт
 game.onUpdateInterval(1300, function () {
     if (controller.up.isPressed() == true) {
         acceleration_fly = 0
@@ -167,13 +180,14 @@ game.onUpdateInterval(1300, function () {
         } else {
             animation.runImageAnimation(
             mySprite,
-            assets.animation`хорнет`,
+            assets.animation`вапв`,
             500,
             false
             )
             controller.moveSprite(mySprite, 70, 3)
         }
     }
+//Конец 1 испытания
     if (room == 3) {
         if (mini_arena == 5) {
             speed = 90
