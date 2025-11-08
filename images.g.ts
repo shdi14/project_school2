@@ -284,25 +284,6 @@ f d f d d d d d d d d d f . . .
 . f f f f f f f f f f f f . . . 
 . . . . . . . . . . . . . . . . 
 `];
-            case "ываываы":
-            case "h3mUTNZgbpo_UIuO":return [img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . f . f . f . f . f . . . 
-. . . f d f d f d f d f d f . . 
-. . . f f f f f f f f f f f . . 
-. . . f d d d d d d d d d f . . 
-. . . f d 5 5 d d d d d d f . . 
-. . f f d 5 5 d d d d d d f . . 
-. f d f d d d d d d d d d f . . 
-. . f f d d d d d d d d d f . . 
-. . . f d d d d d d d d d f . . 
-. . . f d d d d d d d d d f f . 
-. . . f d d d d d d d d d f d f 
-. . . f d d d d d d d d d f f . 
-. . . f f f f f f f f f f f f . 
-. . . . . . . . . . . . . . . . 
-`];
             case "ваыва":
             case "S]~[A-1F|S;S-*,[lgvK":return [img`
 . . . . . . . . . . . . . . . . 
@@ -692,6 +673,25 @@ f d f d d d d d d d d d f . . .
 . . f . f . . . f . f . . . . . 
 . . f . f . . . f . f . . . . . 
 . . f . f . . . f . f . . . . . 
+`];
+            case "ываываы":
+            case "h3mUTNZgbpo_UIuO":return [img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . f . f . f . f . f . . . 
+. . . f d f d f d f d f d f . . 
+. . . f f f f f f f f f f f . . 
+. . . f d d d d d d d d d f . . 
+. . . f d 5 5 d d d d d d f . . 
+. . f f d 5 5 d d d d d d f . . 
+. f d f d d d d d d d d d f . . 
+. . f f d d d d d d d d d f . . 
+. . . f d d d d d d d d d f . . 
+. . . f d d d d d d d d d f f . 
+. . . f d d d d d d d d d f d f 
+. . . f d d d d d d d d d f f . 
+. . . f f f f f f f f f f f f . 
+. . . . . . . . . . . . . . . . 
 `];
         }
         return null;
