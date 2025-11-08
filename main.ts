@@ -51,7 +51,6 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`переход`, function (sp
         room = 3
         tiles.setCurrentTilemap(tilemap`уровень0`)
         mySprite2 = sprites.create(assets.image`dawdaw`, SpriteKind.cubird_enemy_1)
-        mySprite2.setPosition(64, 59)
     }
     if (room == 2) {
         tiles.setCurrentTilemap(tilemap`1 комната`)
