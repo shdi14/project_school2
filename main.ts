@@ -723,14 +723,6 @@ game.onUpdateInterval(2000, function () {
         }
     }
 })
-game.onUpdateInterval(1000, function () {
-    if (enemy_cubird == 1) {
-        if (mySprite.overlapsWith(mySprite2)) {
-            info.changeLifeBy(-1)
-            mySprite.y += -12
-        }
-    }
-})
 game.onUpdateInterval(100, function () {
     if (enemy_cubird == 1) {
         if (mySprite2.isHittingTile(CollisionDirection.Left) == true) {
@@ -853,6 +845,14 @@ game.onUpdateInterval(100, function () {
         mySprite3.y += 3
     }
     mySprite.y += 2
+})
+game.onUpdateInterval(300, function () {
+    if (enemy_cubird == 1) {
+        if (mySprite.overlapsWith(mySprite2)) {
+            info.changeLifeBy(-1)
+            mySprite.y += -12
+        }
+    }
 })
 game.onUpdateInterval(10000, function () {
     if (room == 3) {
