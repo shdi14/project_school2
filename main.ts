@@ -1,39 +1,3 @@
-let povorot_cubird_2 = 0
-let mySprite3: Sprite = null
-let projectile: Sprite = null
-let povorot_cubird = 0
-let mySprite2: Sprite = null
-let engine_power = 0
-let acceleration_fly = 0
-let povorot = 0
-let room = 0
-let enemy_cubird = 0
-let tnt = 0
-let mini_arena = 0
-story.showPlayerChoices("упасть", "сдохнуть", "стать пупсом")
-if (story.checkLastAnswer("сдохнуть") == true) {
-    game.gameOver(false)
-}
-if (story.checkLastAnswer("стать пупсом") == true) {
-    game.gameOver(true)
-}
-let enemy_cubird_2 = 0
-let speed = 60
-mini_arena = 0
-tnt = 0
-enemy_cubird = 0
-info.setLife(10)
-room = 1
-povorot = 1
-tiles.setCurrentTilemap(tilemap`уровень1`)
-let mySprite = sprites.create(assets.image`главный герой`, SpriteKind.Player)
-mySprite.x = 64
-mySprite.y = 64
-controller.moveSprite(mySprite, speed, 3)
-acceleration_fly = 0
-scene.cameraFollowSprite(mySprite)
-scene.setBackgroundImage(assets.image`фон гд лока`)
-engine_power = 100
 namespace SpriteKind {
     export const projectile_enemy = SpriteKind.create()
     export const cubird_enemy_1 = SpriteKind.create()
@@ -44,7 +8,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, l
         room = 2
         tiles.setCurrentTilemap(tilemap`уровень2`)
         mySprite.x = 400
-        mySprite2 =sprites.create(assets.image`dawdaw`, SpriteKind.cubird_enemy_1)
+        mySprite2 = sprites.create(assets.image`dawdaw`, SpriteKind.cubird_enemy_1)
         mySprite2.setPosition(25, 91)
         enemy_cubird = 1
         povorot_cubird = 1
@@ -53,7 +17,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, l
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     mySprite,
-    assets.animation`d`,
+    assets.animation`фывфыв`,
     500,
     false
     )
@@ -62,13 +26,13 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
 scene.onOverlapTile(SpriteKind.Player, assets.tile`debag_block`, function (sprite, location) {
     mySprite.y = SpriteKind.Player + 1
 })
-scene.onOverlapTile(SpriteKind.Projectile, assets.tile`d`, function (sprite, location) {
+scene.onOverlapTile(SpriteKind.Projectile, assets.tile`куб`, function (sprite, location) {
     sprites.destroy(projectile, effects.fountain, 2000)
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     mySprite,
-    assets.animation`g`,
+    assets.animation`фыа`,
     500,
     false
     )
@@ -76,11 +40,13 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (povorot == 1) {
-        projectile = sprites.createProjectileFromSprite(assets.image`gf`, mySprite, 30, 30)
+        projectile = sprites.createProjectileFromSprite(assets.image`бомба`, mySprite, 30, 30)
     } else {
+        projectile = sprites.createProjectileFromSprite(assets.image`бомба1`, mySprite, -30, 30)
+    }
     tnt = 1
-}
-scene.onOverlapTile(SpriteKind.Player, assets.tile`g`, function (sprite, location) {
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`переход`, function (sprite, location) {
     if (room == 1) {
         room = 3
         tiles.setCurrentTilemap(tilemap`уровень0`)
@@ -108,7 +74,7 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
         if (povorot == 1) {
             animation.runImageAnimation(
             mySprite,
-            assets.animation`fsdf`,
+            assets.animation`ываываы0`,
             100,
             true
             )
@@ -124,14 +90,14 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
         if (povorot == 0) {
             animation.runImageAnimation(
             mySprite,
-            assets.animation`f`,
+            assets.animation`ч`,
             500,
             false
             )
         } else {
             animation.runImageAnimation(
             mySprite,
-            assets.animation`dsfsd`,
+            assets.animation`хорнет`,
             500,
             false
             )
@@ -149,13 +115,50 @@ sprites.onOverlap(SpriteKind.cubird_enemy_1, SpriteKind.Projectile, function (sp
 sprites.onOverlap(SpriteKind.enemy_cubird_2, SpriteKind.Projectile, function (sprite, otherSprite) {
     sprites.destroy(mySprite3, effects.disintegrate, 10)
 })
+let povorot_cubird_2 = 0
+let mySprite3: Sprite = null
+let projectile: Sprite = null
+let povorot_cubird = 0
+let mySprite2: Sprite = null
+let engine_power = 0
+let acceleration_fly = 0
+let mySprite: Sprite = null
+let povorot = 0
+let room = 0
+let enemy_cubird = 0
+let tnt = 0
+let mini_arena = 0
+story.showPlayerChoices("упасть", "сдохнуть", "стать пупсом")
+if (story.checkLastAnswer("сдохнуть") == true) {
+    game.gameOver(false)
+}
+if (story.checkLastAnswer("стать пупсом") == true) {
+    game.gameOver(true)
+}
+let enemy_cubird_2 = 0
+let speed = 60
+mini_arena = 0
+tnt = 0
+enemy_cubird = 0
+info.setLife(10)
+room = 1
+povorot = 1
+tiles.setCurrentTilemap(tilemap`1 комната`)
+mySprite = sprites.create(assets.image`главный герой`, SpriteKind.Player)
+mySprite.x = 64
+mySprite.y = 64
+controller.moveSprite(mySprite, speed, 3)
+acceleration_fly = 0
+scene.cameraFollowSprite(mySprite)
+scene.setBackgroundImage(assets.image`фон гд лока`)
+engine_power = 100
 game.onUpdateInterval(1300, function () {
     if (controller.up.isPressed() == true) {
         acceleration_fly = 0
         if (povorot == 0) {
             animation.runImageAnimation(
             mySprite,
-            assets.animation`fdsf`,
+            assets.animation`ваыва`,
             500,
             false
             )
@@ -163,7 +166,7 @@ game.onUpdateInterval(1300, function () {
         } else {
             animation.runImageAnimation(
             mySprite,
-            assets.animation`sdfsdf`,
+            assets.animation`хорнет`,
             500,
             false
             )
@@ -194,7 +197,7 @@ game.onUpdateInterval(100, function () {
             povorot_cubird = 1
             animation.runImageAnimation(
             mySprite2,
-            assets.animation`sdfsdfsd`,
+            assets.animation`dffgdfg`,
             500,
             false
             )
@@ -203,7 +206,7 @@ game.onUpdateInterval(100, function () {
             povorot_cubird = 0
             animation.runImageAnimation(
             mySprite2,
-            assets.animation`dsfsdfsdf`,
+            assets.animation`dfgdfg`,
             500,
             false
             )
@@ -220,7 +223,7 @@ game.onUpdateInterval(100, function () {
             povorot_cubird_2 = 1
             animation.runImageAnimation(
             mySprite3,
-            assets.animation`dfsdf`,
+            assets.animation`dfgdfg0`,
             500,
             false
             )
@@ -229,7 +232,7 @@ game.onUpdateInterval(100, function () {
             povorot_cubird_2 = 0
             animation.runImageAnimation(
             mySprite3,
-            assets.animation`ghjghj`,
+            assets.animation`dfgdfgd`,
             500,
             false
             )
@@ -250,5 +253,4 @@ game.onUpdateInterval(300, function () {
             mySprite.y += -12
         }
     }
-})
 })
