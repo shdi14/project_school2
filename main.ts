@@ -51,7 +51,6 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`переход`, function (sp
         room = 3
         tiles.setCurrentTilemap(tilemap`уровень0`)
         mySprite2 = sprites.create(assets.image`dawdaw`, SpriteKind.cubird_enemy_1)
-        mySprite2.setPosition(64, 59)
     }
     if (room == 2) {
         tiles.setCurrentTilemap(tilemap`1 комната`)
@@ -108,7 +107,7 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`шип`, function (sprite, location) {
     info.changeLifeBy(-1)
-    mySprite.y += -12
+    mySprite.y += -14
 })
 sprites.onOverlap(SpriteKind.cubird_enemy_1, SpriteKind.Projectile, function (sprite, otherSprite) {
     sprites.destroy(mySprite2, effects.disintegrate, 10)
@@ -181,6 +180,9 @@ game.onUpdateInterval(1300, function () {
         }
     }
 })
+game.onUpdateInterval(40, function () {
+    mySprite.y += 2
+})
 game.onUpdateInterval(2000, function () {
     if (controller.right.isPressed() == true) {
         acceleration_fly = 1
@@ -212,10 +214,13 @@ game.onUpdateInterval(100, function () {
             false
             )
         }
+        if (povorot_cubird == 0) {
+            mySprite2.x += -3
+        }
         if (povorot_cubird == 1) {
             mySprite2.x += 3
         } else {
-            mySprite2.x += -3
+        	
         }
         mySprite2.y += 3
     }
@@ -245,7 +250,6 @@ game.onUpdateInterval(100, function () {
         }
         mySprite3.y += 3
     }
-    mySprite.y += 2
 })
 game.onUpdateInterval(300, function () {
     if (enemy_cubird == 1) {
